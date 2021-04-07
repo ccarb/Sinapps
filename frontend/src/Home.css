@@ -1,0 +1,86 @@
+.Home{
+    text-align: center;
+    color:white;
+    align-items: center;
+}
+
+.container{
+    position: relative;
+    left: 50%;
+    width: 512px;
+    height: 512px;
+    transform: translate(-50%, 0%);
+}
+
+.neuron{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.neuronBack{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.background{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.backgroundHovered{
+    animation-name: away;
+}
+
+@keyframes enlarge{
+    from {font-size: 28px;}
+    to {font-size: 32px;}
+}
+
+@keyframes shrink {
+    from {font-size: 32px;}
+    to {font-size: 28px;}    
+}
+
+.neuronLinks{
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+    animation-name: shrink;
+    animation-duration: .5s;
+}
+
+.neuronLinksHovered{
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    text-decoration: none;
+    animation-name: enlarge;
+    animation-duration: 1s;
+}
+
+.Contact{
+    position: absolute;
+    bottom: 100px;
+    left: 450px;
+}
+
+.FirstApp{
+    position: absolute;
+    top: 150px;
+    left: 300px;
+}
+
+@keyframes away {
+    from{
+        --initial: 0 0 0;
+    }
+    to{
+        position: relative;
+        top: 0px;
+        left: 10px;
+    }
+}
