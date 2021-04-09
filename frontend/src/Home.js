@@ -50,9 +50,9 @@ class Background extends React.Component{
     }
     render(){
         let backgroundClassName="";
-        this.state.hovered ? backgroundClassName="backgroundHovered" : backgroundClassName="background";
+        this.state.hovered ? backgroundClassName= this.props.Name+"Hovered" : backgroundClassName=this.props.Name;
         return(
-            <img src={background} className={backgroundClassName} alt="background" />
+            <img src={this.props.src} className={backgroundClassName} alt={this.props.Name} />
         )
     }
 }
@@ -64,10 +64,12 @@ class Home extends React.Component{
     }
     backgroundAway(){
         this.BG.away()
+        this.NB.away()
     }
 
     backgroundBack(){
         this.BG.back()
+        this.NB.back()
     }
 
     render() {
@@ -76,8 +78,8 @@ class Home extends React.Component{
         return (
             <body className = "Home">
                 <div class="container">
-                    <Background ref={BG => this.BG = BG} />
-                    <img src={neuronBack} className="neuron-back" alt="dendritas" />
+                    <Background Name="background" src={background} ref={BG => this.BG = BG} />
+                    <Background Name="neuronBack" src={neuronBack} ref={NB => this.NB = NB} />
                     <img src={neuron} className="neuron" alt="neuron" />
                     <div className="Contact">
                         <NeuronLink name="Contacto" bgAway={this.backgroundAway.bind(this)} bgBack={this.backgroundBack.bind(this)} side={-1}/>

@@ -59,7 +59,7 @@
 .neuronBackHovered{
     position: absolute;
     top: 0px;
-    left: calc(--side*20px);
+    left: calc(var(--side)*20px);
     animation-name: Naway;
     animation-duration: 1s;
 }
