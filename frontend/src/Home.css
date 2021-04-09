@@ -1,3 +1,7 @@
+:root{
+    --side:1
+}
+
 .Home{
     text-align: center;
     color:white;
@@ -18,20 +22,90 @@
     left: 0px;
 }
 
+@keyframes Naway {
+    from {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+    to {
+        position: absolute;
+        top: 0px;
+        left: calc(var(--side)*20px);
+    }
+}
+
+@keyframes Nback {
+    from {
+        position: absolute;
+        top: 0px;
+        left: calc(var(--side)*20px);
+    }
+    to {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }   
+}
+
 .neuronBack{
     position: absolute;
     top: 0px;
     left: 0px;
+    animation-name: Nback;
+    animation-duration: 0.5s;
+}
+
+.neuronBackHovered{
+    position: absolute;
+    top: 0px;
+    left: calc(--side*20px);
+    animation-name: Naway;
+    animation-duration: 1s;
+}
+
+@keyframes away {
+    from {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+    to {
+        position: absolute;
+        top: 0px;
+        left: calc(var(--side)*40px);
+
+    }
+}
+
+@keyframes back {
+    from {
+        position: absolute;
+        top: 0px;
+        left: calc(var(--side)*40px);
+    }
+    to {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
 }
 
 .background{
     position: absolute;
     top: 0px;
     left: 0px;
+    animation-name: back;
+    animation-duration: 0.5s;
 }
 
 .backgroundHovered{
+    position: absolute;
+    top: 0px;
+    left: calc(var(--side)*40px);
     animation-name: away;
+    animation-duration: 1s;
+
 }
 
 @keyframes enlarge{
@@ -72,15 +146,4 @@
     position: absolute;
     top: 150px;
     left: 300px;
-}
-
-@keyframes away {
-    from{
-        --initial: 0 0 0;
-    }
-    to{
-        position: relative;
-        top: 0px;
-        left: 10px;
-    }
 }

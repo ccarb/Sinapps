@@ -9,22 +9,50 @@ class NeuronLink extends React.Component{
         super(props);
         this.big = this.big.bind(this);
         this.small = this.small.bind(this);
-        this.state = props.state.hovered;
+        this.state = {isBig:false};
     }
 
     big(x){
+        let dom=document.getElementById('root')
+        dom.style.setProperty("--side",this.props.side)
+
         this.setState({isBig: true});
+        this.props.bgAway();
     }
 
     small(x){
+        let dom=document.getElementById('root')
+        dom.style.setProperty("--side",this.props.side)
+
         this.setState({isBig: false});
+        this.props.bgBack();
     }
 
     render(){
         let className;
         this.state.isBig ? className = "neuronLinksHovered" : className="neuronLinks";
         return(
-            <a href="." class={className} onMouseOver={this.big} onMouseOut={this.small}>{this.props.name}</a>
+            <a href="." className={className} onMouseOver={this.big} onMouseOut={this.small}>{this.props.name}</a>
+        )
+    }
+}
+
+class Background extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={hovered: false}
+    }
+    away(){
+        this.setState({hovered:true})
+    }
+    back(){
+        this.setState({hovered:false})
+    }
+    render(){
+        let backgroundClassName="";
+        this.state.hovered ? backgroundClassName="backgroundHovered" : backgroundClassName="background";
+        return(
+            <img src={background} className={backgroundClassName} alt="background" />
         )
     }
 }
@@ -34,21 +62,28 @@ class Home extends React.Component{
         super(props)
         this.state={hovered: false}
     }
+    backgroundAway(){
+        this.BG.away()
+    }
+
+    backgroundBack(){
+        this.BG.back()
+    }
 
     render() {
-        let backgroundClassName="";
-        this.state.hovered ? backgroundClassName="backgroundHovered" : backgroundClassName="background";
+        //let backgroundClassName="";
+        //this.state.hovered ? backgroundClassName="backgroundHovered" : backgroundClassName="background";
         return (
             <body className = "Home">
                 <div class="container">
-                    <img src={background} className={backgroundClassName} alt="background" />
+                    <Background ref={BG => this.BG = BG} />
                     <img src={neuronBack} className="neuron-back" alt="dendritas" />
                     <img src={neuron} className="neuron" alt="neuron" />
-                    <div class="Contact">
-                        <NeuronLink name="Contacto" state={this.state}/>
+                    <div className="Contact">
+                        <NeuronLink name="Contacto" bgAway={this.backgroundAway.bind(this)} bgBack={this.backgroundBack.bind(this)} side={-1}/>
                     </div>
-                    <div class="FirstApp">
-                        <NeuronLink name="First App" state={this.state}/>
+                    <div className="FirstApp">
+                        <NeuronLink name="First App" bgAway={this.backgroundAway.bind(this)} bgBack={this.backgroundBack.bind(this)} side={-1}/>
                     </div>
                 </div>
             </body>
